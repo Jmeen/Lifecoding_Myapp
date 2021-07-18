@@ -7,6 +7,7 @@ public class AccoutingApp {
 		// 변수로 변경
 		// 입력값 도입
 		// args는 String이기때문에 Double로 변경하는 명령어를 추가
+		// 제어문 추가
 		double valueOfSupply = Double.parseDouble(args[0]);
 		double vatRate = 0.1;
 		double VAT = valueOfSupply * vatRate;
@@ -14,10 +15,21 @@ public class AccoutingApp {
 		double expanseRate = 0.3;
 		double Expense = valueOfSupply * expanseRate;
 		double income = valueOfSupply - Expense;
-		double dividend1 = income * 0.5;
-		double dividend2 = income * 0.3;
-		double dividend3 = income * 0.2;
 		
+		double dividend1;
+		double dividend2;
+		double dividend3;
+
+		if (income > 10000.0) {
+			dividend1 = income * 0.5;
+			dividend2 = income * 0.3;
+			dividend3 = income * 0.2;
+		} else {
+			dividend1 = income * 1;
+			dividend2 = income * 0;
+			dividend3 = income * 0;
+		}
+
 		System.out.println("VAT : " + VAT);
 		System.out.println("Value of supply : " + valueOfSupply);
 		System.out.println("Total : " + Total);
