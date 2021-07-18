@@ -9,6 +9,7 @@ public class AccoutingApp {
 		// args는 String이기때문에 Double로 변경하는 명령어를 추가
 		// 제어문 추가
 		// 배열
+		// 반복문 추가
 		double valueOfSupply = Double.parseDouble(args[0]);
 		double vatRate = 0.1;
 		double VAT = valueOfSupply * vatRate;
@@ -22,15 +23,6 @@ public class AccoutingApp {
 		double rate3 = 0.2;
 		
 		//Rate를 배열로 생성
-		double[] dividendRates = new double[3];
-		dividendRates[0] = 0.5;
-		dividendRates[1] = 0.3;
-		dividendRates[2] = 0.2;
-		
-		double dividend1 = income * dividendRates[0];
-		double dividend2 = income * dividendRates[1];
-		double dividend3 = income * dividendRates[2];
-//
 //		if (income > 10000.0) {
 //			dividend1 = income * 0.5;
 //			dividend2 = income * 0.3;
@@ -46,11 +38,23 @@ public class AccoutingApp {
 		System.out.println("Total : " + Total);
 		System.out.println("Expense : " + Expense);
 		System.out.println("income : " + income);
-		System.out.println("Dividend1 : " + dividend1);
-		System.out.println("Dividend2 : " + dividend2);
-		System.out.println("Dividend3 : " + dividend3);
-			
+		
+		// 이 아래 3줄은 같은 일을 하고있다. 반복문으로 바꿔보자.
+		
+		double[] dividendRates = new double[3];
+		dividendRates[0] = 0.5;
+		dividendRates[1] = 0.3;
+		dividendRates[2] = 0.2;
+	
+//		double dividend1 = income * dividendRates[0];
+//		double dividend2 = income * dividendRates[1];
+//		double dividend3 = income * dividendRates[2];
 
+		int i = 0;
+		while (i < dividendRates.length) {
+			System.out.println("Dividend1 : " + income*dividendRates[i]);
+			i = i + 1;
+		}
 	}
 
 }
