@@ -7,7 +7,108 @@ public class Repeat {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		q4_10();
+		q4_15();
+	}
+
+	private static void q4_15() {
+		// 14 프로그램을 수정해서 결과뿐만 아니라 계산식도 보여주는 프로그램을 만들어보자.
+		// 예) 1 + 2+ 3 = 6
+
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+		int sum = 0;
+
+		for (int i = 1; i < num; i++) {
+			System.out.print(i + " + ");
+			sum += i;
+		}
+		System.out.print(num + " = ");
+		sum += num;
+		
+		System.out.println(sum);
+
+//		for (int i = 1; i <= num; i++) {
+//			sum += i;
+//		}
+//
+//		for (int j = 1; j <= num; j++) {
+//			System.out.print(j);
+//			if (j != num) {
+//				System.out.print(" + ");
+//			}
+//		}
+//		System.out.print(" = ");
+//		System.out.println(sum);
+
+	}
+
+	private static void q4_14() {
+		// 1부터 n까지의 합을 구하는 프로그램을 for문을 사용해 작성하자.
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		int sum = 0;
+		for (int i = 1; i <= num; i++) {
+			sum += i;
+		}
+		System.out.println(sum);
+
+	}
+
+	private static void q4_13() {
+		// q4-12 와 반대로 카운트 업
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		for (int i = 0; i <= num; i++) {
+			System.out.println(i);
+		}
+	}
+
+	private static void q4_12() {
+		// 양의 정수값을 0까지 카운트다운하는 문제 4-5를 for문으로 작성하시오.
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		for (int i = 0; i <= num; i++) {
+			System.out.println(num - i);
+		}
+
+		sc.close();
+	}
+
+	private static void q4_11() {
+		// 기호 문자를 임의의 개수만큼 출력했던 문제 4-7을 for문으로 작성하라.
+		// 입력한 값의 갯수만큼 '*'을 표시하는 포로그램을 만들어 보자.
+		// 마지막에는 줄바꿈 문자를 출력할 것.
+//		단 읽은값이 1미만이면, 줄바꿈 문자를 표시해서는 안된다.
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		for (int i = 0; i < num; i++) {
+			System.out.print('*');
+		}
+		System.out.println();
 	}
 
 	private static void q4_10() {
