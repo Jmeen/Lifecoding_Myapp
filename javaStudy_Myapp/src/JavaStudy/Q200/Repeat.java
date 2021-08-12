@@ -7,7 +7,120 @@ public class Repeat {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		q4_5();
+		q4_10();
+	}
+
+	private static void q4_10() {
+		// 양의 정수값 n을 읽어서 1부터 n까지의 곱을 구하는 프로그램을 작성해보자.
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		int x = 1;
+		int result = 1;
+
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		while (x <= num) {
+			result *= x;
+			x++;
+		}
+
+		System.out.println(result);
+
+	}
+
+	private static void q4_9() {
+		// 양의 정수값을 읽어 자릿수를 표시한다.
+
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		int count = 0;
+		do {
+			System.out.print("정수를 입력하세요 >> ");
+			num = sc.nextInt();
+		} while (!(num > 0));
+
+		while (num > 0) {
+			num = num / 10;
+			count++;
+		}
+
+//		boolean bl = true;
+//		while (bl) {
+//			if (num % 10 == 0) {
+//				bl = false;
+//			} else {
+//				num = num / 10;
+//				count++;
+//			}
+//		}
+//		
+		System.out.println(count);
+	}
+
+	private static void q4_8() {
+		// 읽은 값의 개수만큼 '*'와 '+'을 번갈아가며 표시하는 프로그램을 작성하자.
+		// 마지막에는 줄바꿈 문자를 출력할 것.
+		int num = 11;
+
+//		while (num > 0) {
+//			if (num % 2 == 0) {
+//				System.out.print("*");
+//			} else {
+//				System.out.print("+");
+//			}
+//			num--;
+//		}
+//
+//		System.out.println();
+
+		int i = 0;
+		while (i < num / 2) {
+			System.out.print("*+");
+			i++;
+		}
+		if (num % 2 != 0) {
+			System.out.print("*");
+		}
+		System.out.println();
+	}
+
+	private static void q4_7() {
+		// 입력한 값의 갯수만큼 '*'을 표시하는 포로그램을 만들어 보자.
+		// 마지막에는 줄바꿈 문자를 출력할 것.
+//		단 읽은값이 1미만이면, 줄바꿈 문자를 표시해서는 안된다.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("정수를 입력하세요 >> ");
+		int num = sc.nextInt();
+		if (num > 0) {
+			while (num > 0) {
+				System.out.print("*");
+				num--;
+			}
+		}
+		System.out.println();
+	}
+
+	private static void q4_6() {
+		// 문제 4-5dptj x--를 --x로 고치면, 어떻게 출력이 바뀌는지 검증해보자.
+		// 프로그램을 작성하여 실행 결과를 확인할 것.
+
+		Scanner sc = new Scanner(System.in);
+		int num = 5;
+
+		do {
+			System.out.print("정수를 입력하세요.(1~99) >>> ");
+			num = sc.nextInt();
+		} while (num < 0 || num > 99);
+
+		while (num >= 0) {
+			System.out.println(--num);
+		}
+		System.out.println("현재 num의 값 : " + num);
+
+		sc.close();
 	}
 
 	private static void q4_5() {
