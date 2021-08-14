@@ -6,7 +6,151 @@ import java.util.Scanner;
 public class Repeat {
 
 	public static void main(String[] args) {
-		q4_25();
+		q4_30();
+	}
+
+	private static void q4_30() {
+		// 문제 4-3의 숫자맞추기 게임에서 숫자의 범위를 0~99로 변경하고, 플레이어가 입력할 수 있는 횟수를 제한 하도록 수정하자.
+		// 제한 횟수내에 맞추지 못한 경우네는 정답을 표시하고 게임을 종료할 것.
+
+		// 2자리의 정수값(10~99)를 맞추는 '숫자맞추기 게임'을 해보자.
+		// 난수 생성과 if문 그리고 do를 이용할 것.
+		System.out.println("숫자 맞추기 게임 시작!");
+		System.out.println("0부터 99까지의 숫자를 맞추세요!");
+		Random rand = new Random();
+		Scanner sc = new Scanner(System.in);
+		int rdnum = rand.nextInt(99);
+		System.out.println(rdnum);
+		int num = 0;
+		int count = 6;
+		int leftcount = count;
+
+		do {
+			System.out.print("남은 횟수 " + leftcount + "회, 정답은 ?? >>");
+			num = sc.nextInt();
+
+			if (num > rdnum) {
+				System.out.println(" >>> 다운");
+				leftcount--;
+			} else if (num < rdnum) {
+				System.out.println(" >>> 업");
+				leftcount--;
+			}
+
+		} while (num != rdnum && leftcount > 0);
+
+		if (rdnum == num) {
+			System.out.println("정답!! " + (count - leftcount + 1) + "회만에 맞추셨습니다.");
+		} else {
+			System.out.println("정답은 " + rdnum + "이었습니다.");
+		}
+	}
+
+	private static void q4_29() {
+		// 5개의 정수로 구성된 그룹의 전체 합계(그룹별이 아닌 전체 그룹의 합)을 구하는 프로그램을 작성하자.
+		// 전체 10개의 그룹이 있으면 각 정수값은 키보드를 통해 입려한다.
+		// 단 99999를 입력하면 전체 입력을 종료하고, 88888을 입력하면 현재 읽고있는 그룹의 입력을 종료할 것.
+
+		Scanner sc = new Scanner(System.in);
+		int totalsum = 0;
+
+		outer: for (int i = 1; i <= 10; i++) {
+			int groupsum = 0;
+			int t = 0;
+			System.out.println(i + "번 그룹");
+
+			for (int j = 0; j < 5; j++) {
+				t = sc.nextInt();
+				if (t == 99999) {
+					break outer;
+				} else if (t == 88888) {
+					break;
+				} else {
+					groupsum += t;
+					totalsum += t;
+				}
+			}
+			System.out.println(i + "번 그룹 합계 : " + groupsum);
+		}
+		System.out.println("전체 그룹의 합계 : " + totalsum);
+	}
+
+	private static void q4_28() {
+		// 정수값을 연달아 읽어서 음수가 아닌 값의 합계와 평균을 구하자.
+		// 음수의 개수는 평균을 구할때 분모에서 제외할 것.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 숫자를 더할까? >> ");
+		int num = sc.nextInt();
+		int count = 0, sum = 0;
+
+		for (int i = 0; i < num; i++) {
+			System.out.print(">> ");
+			int t = sc.nextInt();
+			if (t < 0) {
+				continue;
+			} else {
+				sum += t;
+				count++;
+			}
+		}
+
+		System.out.println("합계는 " + sum + "입니다.");
+		System.out.println("평균은 " + sum / count + "입니다.");
+
+	}
+
+	private static void q4_27() {
+		// 정수값을 읽어서 합계와 평균을 구하는 프로그램을 작성하자.
+		// 단, 정수값의 입력은 합계가 1000을 넘지 않는 범위에서 이뤄잊ㄹ것.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 숫자를 더할까? >> ");
+		int num = sc.nextInt();
+
+		int sum = 0;
+
+		for (int i = 0; i < num; i++) {
+			int t = 0;
+			do {
+				System.out.print("정수값 >> ");
+				t = sc.nextInt();
+			} while (t < 0);
+
+			if (sum + t > 1000) {
+				System.out.println("합계가 1000이 넘었습니다. 마지막 값은 무시합니다.");
+				break;
+			} else {
+				sum += t;
+			}
+		}
+		System.out.println("합계는 " + sum + "입니다.");
+		System.out.println("평균은 " + sum / num + "입니다.");
+	}
+
+	private static void q4_26() {
+		// 정수값을 연속해서 입력을 받아 합계와 평균을 구한느 프로그램을 작성하자.(0입력시 종료)
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 숫자를 더할까? >> ");
+		int num = sc.nextInt();
+		int count = 0;
+		int sum = 0;
+		int a = 0;
+		for (int i = 0; i < num; i++) {
+			do {
+				System.out.print("정수값 >> (0입력시 종료)");
+				a = sc.nextInt();
+			} while (a < 0);
+
+			if (a == 0)
+				break;
+			else {
+				sum += a;
+				count++;
+			}
+
+		}
+
+		System.out.println("합계는 " + sum + "입니다.");
+		System.out.println("평균은 " + sum / count + "입니다.");
 	}
 
 	private static void q4_25() {
