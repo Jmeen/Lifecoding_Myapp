@@ -6,7 +6,137 @@ import java.util.Scanner;
 public class Repeat {
 
 	public static void main(String[] args) {
-		q4_20();
+		q4_25();
+	}
+
+	private static void q4_25() {
+		// 양의 정수값을 읽어서 소수인지를 판정하는 프로그램을 작성하자.
+		// 소수란 2이상n미만인 수중 어떤 수로도 나누어지지 않는 정수값n이다. (즉 자기자신과 1로만 나뉘어진다)
+		Scanner sc = new Scanner(System.in);
+		System.out.print("정수는? >> ");
+
+		int num = sc.nextInt();
+
+		boolean unique = true;
+		if (num > 1) {
+			for (int i = 2; i < num; i++) {
+
+				if (num % i == 0) {
+					unique = false;
+					break;
+				}
+			}
+			System.out.println(unique ? "소수임" : "소수아님");
+		}
+	}
+
+	private static void q4_24() {
+		// n단의 숫자 피라미드를 표시하는 프로그램을 작성하라.
+		// i번째 행에는i%10을 표시할것.
+
+		int num = 15;
+		for (int i = 1; i <= num; i++) {
+			for (int j = 0; j < num - i; j++) {
+				System.out.print(" ");
+			}
+			for (int k = 1; k < 2 * i; k++) {
+				System.out.print(i % 10);
+			}
+			System.out.println();
+		}
+	}
+
+	private static void q4_23() {
+		// n단 피라미드를 표시하는 프로그램을 작성하자.
+		// i행 째에[는 (i-1)*2 +1 개의 '*' 기호를 표시하고 마지막 행인 n 행째에는 (n-1)*2+1개의 '*'을 표시할 것.
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇단? >> ");
+		int num = sc.nextInt();
+
+		for (int i = 1; i <= num; i++) {
+			for (int j = 1; j <= num - i; j++) {
+				System.out.print(" ");
+			}
+			for (int k = 1; k < (2 * i); k++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+	private static void q4_22() {
+		// 기호문자 '*'을 나열해서 직각의 이등변 삼각형을 표시하는 프로그램을 작성하자.
+		// 직각의 위치가 왼쪽 아래, 왼쪽위, 오른쪽 아래, 오른쪽 위레 표시하는 프로그램을 각각 작성하자.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("단수는?");
+		int num = sc.nextInt();
+		// 1. 왼쪽 아래
+		System.out.println("1. 왼쪽 아래");
+		System.out.println();
+		for (int j = 0; j < num; j++) {
+			for (int i = 0; i <= j; i++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println("===========");
+
+		// 2. 왼쪽 위
+		System.out.println("2. 왼쪽 위");
+		System.out.println();
+		for (int i = 0; i <= num; i++) {
+			for (int j = 0; j < num - i; j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println("===========");
+
+		// 3. 오른쪽 아래
+		System.out.println("3. 오른쪽 아래");
+		System.out.println();
+		for (int i = 0; i < num; i++) {
+			for (int j = 1; j < (num - i); j++) {
+				System.out.print(" ");
+			}
+			for (int k = 0; k <= i; k++) {
+				System.out.print("*");
+			}
+
+			System.out.println();
+		}
+
+		// 4. 오른쪽 위
+		System.out.println("4. 오른쪽 위");
+		System.out.println();
+		for (int i = 0; i < num; i++) {
+
+			for (int k = 0; k < i; k++) {
+				System.out.print(" ");
+			}
+
+			for (int j = 0; j < num - i; j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+	private static void q4_21() {
+		// 기호문자 '*'을 나열해서 n단의 정사각형을 표시하는 프로그램을 작성하자.
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		if (num > 0) {
+			for (int j = 0; j < num; j++) {
+				for (int i = 0; i < num; i++) {
+					System.out.print("*");
+				}
+				System.out.println();
+			}
+		}
 	}
 
 	private static void q4_20() {
