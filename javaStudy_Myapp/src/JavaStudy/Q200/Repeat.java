@@ -6,8 +6,178 @@ import java.util.Scanner;
 public class Repeat {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		q4_15();
+		q4_20();
+	}
+
+	private static void q4_20() {
+		// 월을 정수값으로 읽어서 해당하는 달의 계절을 표시하는 프로그램을 작성하자.
+		// 원하는 만큼 입력 및 출력할 수 있게 하여 1-12이외의 값이 입력된 경우에는 재입력 하도록 할것.
+
+		Scanner sc = new Scanner(System.in);
+		int num = 0;
+		int check = 1;
+
+		do {
+			do {
+				System.out.print("월을 입력해 주세요");
+				num = sc.nextInt();
+			} while (num < 1 || num > 12);
+
+			switch (num) {
+			case 3:
+			case 4:
+			case 5:
+				System.out.println("봄입니다.");
+				break;
+			case 6:
+			case 7:
+			case 8:
+				System.out.println("여름입니다.");
+				break;
+			case 9:
+			case 10:
+			case 11:
+				System.out.println("가을입니다.");
+				break;
+			case 12:
+			case 1:
+			case 2:
+				System.out.println("겨율입니다.");
+				break;
+
+			default:
+				System.out.println("값을 다시 입력해주세요.");
+				break;
+			}
+			do {
+				System.out.println("다시할까요? 1- 네, 0-아니요");
+				check = sc.nextInt();
+			} while (check > 1 || check < 0);
+
+		} while (check == 1);
+
+	}
+
+	private static void q4_19() {
+		// 1부터 n까지의 정수값에 각 값을 제곱해서 표시한느 프로그램을 작성하라
+		// n을 입력받을 것.
+		// 예 > 3 --> 1의 제곱은 1입니다, 2의 제곱은 4입니다. 3의 제곱은 9입니다.
+
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+
+		if (num > 0) {
+			for (int i = 1; i <= num; i++) {
+				int result = i * i;
+				System.out.println(i + "의 제곱은 " + result + "입니다.");
+			}
+
+			System.out.println();
+			// for 선언부에 변수를 추가로 넣을 수 있다. 조건 부에 , 으로 구분해야한다.
+			for (int i = 1, j = 1; i <= num; i++, j = i * i) {
+				System.out.println(i + "의 제곱은 " + j + "입니다.");
+			}
+
+		}
+
+	}
+
+	private static void q4_18() {
+		// 입력한 정숫값의 모든 약수와 그 갯수를 표시하는 프로그램을 작성하자.
+		// 예> 정수 : 12 >> 1,2,3,4,5,12/ 12의 약수는 6개입니다.
+
+		Scanner sc = new Scanner(System.in);
+		int num = 12;
+		int count = 0;
+
+		for (int i = 1; i <= num; i++) {
+			if (num % i == 0) {
+				System.out.print(i + " ");
+				count++;
+			}
+		}
+		System.out.println();
+		System.out.println(num + "의 약수는 " + count + "개 입니다.");
+
+	}
+
+	private static void q4_17() {
+		// 읽은 갯수만큼 '*'을 표시하는 4-11을 변경해서, 5개 단위로 줄바꿈해서 표시하는 프로그램을 작성하자.
+		Scanner sc = new Scanner(System.in);
+		int num = 14;
+		int for1 = num / 5;
+		int for2 = (num % 5 != 0 ? 1 : 0);
+
+		// 교재 방법 2
+		for (int i = 0; i < num / 5; i++) {
+			System.out.println("*****");
+		}
+
+		if (num % 5 != 0) {
+			for (int j = 0; j < num % 5; j++) {
+				System.out.print("*");
+			}
+		}
+
+//		// 교재 방법 1
+//		for (int i = 0; i < num; i++) {
+//			System.out.print("*");
+//			if (i % 5 == 4) {
+//				System.out.println();
+//			}
+//		}
+//
+//		if (num % 5 != 0) {
+//			System.out.println();
+//		}
+
+		// 내가 푼 방법
+//		for (int i = 0; i < for1; i++) {
+//			for (int j = 0; j < 5; j++) {
+//				System.out.print("*");
+//			}
+//			System.out.println();
+//		}
+//
+//		if (for2 != 0) {
+//			for (int j = 0; j < num % 5; j++) {
+//				System.out.print("*");
+//			}
+//			System.out.println();
+//		}
+	}
+
+	private static void q4_16() {
+		// 신장별 표준 체중 대응표를 표시하는 프로그램을 작성해보자.
+//		표시할 신장의 범위(시작값, 종료값,증가값)은 정수로 입력받을것
+		// 표준체중 = (신장 -100) * 0.9
+		Scanner sc = new Scanner(System.in);
+		int max = 0;
+		int min = 0;
+		int increse = 5;
+		double weight = 0;
+
+		do {
+			System.out.print("최대키을 입력해 주세요 >> ");
+			max = sc.nextInt();
+		} while (max <= 130);
+
+		do {
+			System.out.print("최소키을 입력해 주세요 >> ");
+			min = sc.nextInt();
+		} while (min <= 130);
+
+		if (min > max) {
+			int temp = max;
+			max = min;
+			min = temp;
+		}
+
+		for (int i = min; i <= max; i = i + increse) {
+			weight = ((i - 100) * 0.9);
+			System.out.println(i + "cm의 평균 체중은 " + weight + "kg 입니다.");
+		}
+
 	}
 
 	private static void q4_15() {
@@ -28,7 +198,7 @@ public class Repeat {
 		}
 		System.out.print(num + " = ");
 		sum += num;
-		
+
 		System.out.println(sum);
 
 //		for (int i = 1; i <= num; i++) {
