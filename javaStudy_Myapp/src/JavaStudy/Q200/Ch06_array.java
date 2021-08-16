@@ -6,7 +6,182 @@ import java.util.Scanner;
 public class Ch06_array {
 
 	public static void main(String[] args) {
-		q06_15();
+		q06_21();
+
+	}
+
+	private static void q06_21() {
+		// 학급 수 , 학생수 그리고 모든 학생의 점수를 읽어서 합계와 평균을 구하는 프로그램을 만들어라.
+		// 합계와 평균은 학급단위와 전교생을 대상으로 하는것을 각각 구현할 것.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("학급 수는?");
+		int classes = sc.nextInt();
+		int[][] scores = new int[classes][];
+		int[] sumclass = new int[classes];
+		int sumtotal = 0;
+		int count = 0;
+
+		// 각각 반에 대한 테이블 생성
+		for (int i = 0; i < classes; i++) {
+			System.out.print((i + 1) + "반의 학생수는 ? >> ");
+			int students = sc.nextInt();
+			scores[i] = new int[students];
+		}
+		for (int i = 0; i < classes; i++) {
+			for (int j = 0; j < scores[i].length; j++) {
+				System.out.print((i + 1) + "반 " + (j+1) + " 번= ? ");
+				scores[i][j] = sc.nextInt();
+				sumclass[i] += scores[i][j];
+				sumtotal += scores[i][j];
+				count++;
+			}
+		}
+		System.out.println(" 반    합계   평균");
+		for (int i = 0; i < classes; i++) {
+			System.out.printf("%2d반 |  %3d  %3.1f%n", i + 1, sumclass[i], (double) (sumclass[i] / scores[i].length));
+		}
+		System.out.printf(" 평균  %5d  %3.1f", sumtotal, (double) sumtotal / count);
+	}
+
+	private static void q06_20() {
+		// 행에따라 열의 길이가 다른 2차원 배열을 생성하자.
+		// 행수 , 열수, 값은 키보드로 입력받을것.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("열수는?");
+		int height = sc.nextInt();
+		int[][] tbs = new int[height][];
+
+		for (int i = 0; i < height; i++) {
+			System.out.print(i + 1 + "번 테이블의 행수는? >> ");
+			int width = sc.nextInt();
+			tbs[i] = new int[width];
+		}
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < tbs[i].length; j++) {
+				System.out.print((i + 1) + "테이블 [" + i + "][" + j + "] = ?");
+				tbs[i][j] = sc.nextInt();
+			}
+		}
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < tbs[i].length; j++) {
+				System.out.println("a[" + i + "][" + j + "] = " + tbs[i][j]);
+			}
+		}
+
+	}
+
+	private static void q06_19() {
+		// 6명의 두 과목 점수를 읽어 과목별 평균과 학생별 평균을 구해보자.
+		// -- 6 X 2 행
+		int student = 3;
+		int subject = 2;
+		Scanner sc = new Scanner(System.in);
+		int[][] scores = new int[student][subject]; // 점수 배열
+		int[] sumproject = new int[2]; // 과목별 평균
+		int[] sumstudent = new int[student]; // 학생별 평균
+
+		int totalscore = 0;
+		System.out.println("점수를 입력하세요");
+		for (int i = 0; i < student; i++) {
+			System.out.print(i + 1 + "번 국어 : >> ");
+			scores[i][0] = sc.nextInt();
+			System.out.print("    영어 : >> ");
+			scores[i][1] = sc.nextInt();
+
+			// 과목별 더하기
+			sumproject[0] += scores[i][0];
+			sumproject[1] += scores[i][1];
+			// 학생별 더하기
+			sumstudent[i] = scores[i][0] + scores[i][1];
+
+		}
+		System.out.println("No.  국어  수학  평균");
+		for (int i = 0; i < student; i++) {
+			System.out.printf("%2d  %3d  %3d  %3.1f%n", i + 1, scores[i][0], scores[i][1],
+					(double) sumstudent[i] / subject);
+		}
+		System.out.printf("평균  %3.1f  %3.1f%n", (double) sumproject[0] / student, (double) sumproject[1] / student);
+
+	}
+
+	private static void q06_18() {
+		// 4행 3열과 3행 4열을 곱하는 프로그램을 작성하자.
+
+		// 도저히 행렬의 곱이 이해가 안간다. 나중에 다시 해보자.
+
+		Scanner sc = new Scanner(System.in);
+		int[][] a = new int[4][3];
+		int[][] b = new int[3][4];
+		System.out.println("행렬 a의 요소를 입력하세요.");
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.print("a[" + i + "][" + j + "] = ");
+				a[i][j] = sc.nextInt();
+			}
+		}
+
+		System.out.println("행렬 b의 요소를 입력하세요.");
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 4; j++) {
+				System.out.print("b[" + i + "][" + j + "] = ");
+				b[i][j] = sc.nextInt();
+			}
+		}
+
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.println("a[" + i + "][" + j + "] = " + a[i][j]);
+			}
+		}
+
+	}
+
+	private static void q06_17() {
+		// 배열 변수의 값을 표시하는 프로그램을 작성하자.
+		String[] a = new String[4];
+		System.out.println(a);
+	}
+
+	private static void q06_16() {
+		// 요일을 표시하고 해당 요일의 영어 단어를 입력하는 영어학습프로그램을 만들어보자.
+		// 요일은 난수로 생성할 것
+		// 학습자가 원하는 동안은 계속 반복할 것
+		// 동일 요일은 연속하여 표시하지 않을 것
+		Scanner sc = new Scanner(System.in);
+		Random rd = new Random();
+
+		String[] daysKOR = { "일", "월", "화", "수", "목", "금", "토" };
+		String[] daysENG = { "Sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" };
+
+		int repeat = 1;
+		int last = 0;
+		int n = 0;
+
+		do {
+			do {
+				n = rd.nextInt(7);
+			} while (n == last);
+			last = n;
+			String an = daysENG[n].toLowerCase();
+			System.out.print("문제 : " + daysKOR[last] + "요일은 영어로 뭔가요 ??? >> ");
+
+			while (true) {
+				String stran = sc.next().toLowerCase();
+
+				if (stran.equals(an)) {
+					System.out.println("정답입니다.");
+					break;
+				} else {
+					System.out.println("다시 해봐요");
+				}
+			}
+
+			System.out.println();
+			System.out.print("계속 할까요? 1-YES 2-NO");
+			repeat = sc.nextInt();
+		} while (repeat == 1);
 
 	}
 
@@ -28,7 +203,7 @@ public class Ch06_array {
 				n = 1 + rand.nextInt(12);
 			} while (n == last);
 			last = n;
-			
+
 			String ans = months[last - 1].toLowerCase();
 			do {
 				System.out.print(last + "월 : ");
