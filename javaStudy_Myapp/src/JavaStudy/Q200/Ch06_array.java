@@ -1,34 +1,225 @@
 package JavaStudy.Q200;
 
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Ch06_array {
 
 	public static void main(String[] args) {
-		q06_10();
+		q06_15();
 
 	}
-	
-	private static void q06_10() {
-		// 요소의 형이 int형인 배열을 마늘어서 모든 요소에 1~10의 난수를 대입하자.(1이상 10이하)
-		// 요소 수는 키보드를 통해 입력받을 것.
-		
+
+	private static void q06_15() {
+		// 1~12월을 숫자로 표시하고, 해당월의 영어단어를 입력하는 프로그램을 작성하자.
+		// 월은 난수로 생성할 것
+		// 학습자가 원하는 동안은 계속 반복할 것
+		// 동일 월은 연속해서 표시하지 않을것.
+		Random rand = new Random();
+		Scanner sc = new Scanner(System.in);
+		String[] months = { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
+
+		String asw;
+		int retry = 1;
+		int last = 0;
+		int n = 0;
+		do {
+			do {
+				n = 1 + rand.nextInt(12);
+			} while (n == last);
+			last = n;
+			
+			String ans = months[last - 1].toLowerCase();
+			do {
+				System.out.print(last + "월 : ");
+				asw = sc.next().toLowerCase();
+				if (asw.equals(ans)) {
+					System.out.println("정답입니다!");
+					break;
+				} else {
+					System.out.println("틀렸어요");
+				}
+			} while (asw != ans);
+
+			System.out.print("더 할까요? 1-Yes, 2-No");
+			retry = sc.nextInt();
+		} while (retry != 2);
+
+	}
+
+	private static void q06_14() {
+		// 배열a의 모든 요소를 역순으로 배열 b에 역순으로 복사하는 프로그램을 만들자.
+		int n = 6;
+
+		int[] a = { 1, 2, 3, 4, 5, 6 };
+		int[] b = new int[n];
+		int nb = 0;
+
+		// 내방법
+//		for(int i =n-1; i>=0; i--,numb++) {
+//			b[nb]=a[i];
+//		}
+//		
+		// 교재 방법
+		for (int i = 0; i < n; i++) {
+			b[i] = a[n - i - 1];
+		}
+
+		for (int x : b) {
+			System.out.print(x + " ");
+		}
+	}
+
+	private static void q06_13() {
+		// 배열의 나열순서를 임의대로 섞는 프로그램을 작성하자.
+
+		// 필요 조건 : 배열의 순서는 중복되면 안된다.
 		Scanner sc = new Scanner(System.in);
 		System.out.print("몇개의 수를 만들까요? >> ");
 		int num = sc.nextInt();
 		int[] nums = new int[num];
 		Random rand = new Random();
-		
-		for(int i = 0; i<nums.length; i++) {
-			nums[i] = 1+rand.nextInt(10);
+
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = 1 + rand.nextInt(10);
+			for (int j = 0; j < i; j++) {
+				if (i > 1 && nums[j] == nums[i]) {
+					i--;
+					System.out.println("중복발생!");
+					continue;
+				}
+			}
 		}
-		
+		System.out.println("배열을 만들었습니다.");
 		for (int x : nums) {
 			System.out.println(x);
 		}
-		
+
+		// 이제 섞어보자
+//		for(int i = 0; i<num*2; i++) {
+//			int idx1 = rand.nextInt(num);
+//			int idx2 = rand.nextInt(num);
+//			
+//			int temp = nums[idx1];
+//			nums[idx1] = nums[idx2];
+//			nums[idx2] = temp;
+//		}
+		// Fisher-yates 알고리즘
+		for (int i = num - 1; i > 0; i--) {
+			int j = rand.nextInt(i + 1);
+			if (j != i) {
+				int temp = nums[i];
+				nums[i] = nums[j];
+				nums[j] = temp;
+			}
+		}
+
+		System.out.println("배열을 섞었습니다.");
+		for (int x : nums) {
+			System.out.println(x);
+		}
+
+		sc.close();
+	}
+
+	private static void q06_12() {
+		// 서로 다른 요소가 동일한 값을 지니지 않도록 6-10의 프로그램을 수정하자.
+		// 예를들면 1,2,3,4,1,2 가 돼서는 안된다.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 수를 만들까요? >> ");
+		int num = sc.nextInt();
+		int[] nums = new int[num];
+		Random rand = new Random();
+
+//		for (int i = 0; i < nums.length; i++) {
+//			int j = 0;
+//			do {
+//				nums[i] = 1 + rand.nextInt(10);
+//				for (; j < i; j++) {
+//					if (nums[j] == nums[i]) {
+//						break;
+//					}
+//				}
+//			} while (j < i);
+//
+//		}
+
+//		// 내방법
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = 1 + rand.nextInt(10);
+			for (int j = 0; j < i; j++) {
+				if (i > 1 && nums[j] == nums[i]) {
+					i--;
+					System.out.println("중복발생!");
+					continue;
+				}
+			}
+		}
+
+		for (int x : nums) {
+			System.out.println(x);
+		}
+
+		sc.close();
+	}
+
+	public static void q06_11() {
+		// 인접하는 요소가 동일한 값을 가지지 않도록 문제 6-10의 프로그램을 수정하자.
+		// 예를들어 1,4,5,5,3,2가 돼서는 안된다.
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 수를 만들까요? >> ");
+		int num = sc.nextInt();
+		int[] nums = new int[num];
+		Random rand = new Random();
+
+		// 교재의 방법.
+		// 첫번째를 미리 대입을 하고 다음수부터 반복.
+		// 만약 전것과 같으면 do-while문 재실행.
+//		nums[0]= 1 + rand.nextInt(10);
+//		for (int i = 1; i < nums.length; i++) {
+//			do {
+//				nums[i] = 1 + rand.nextInt(10);
+//			} while (nums[i] == nums[i - 1]);
+//		}
+
+		// 1차 내 방법.
+		// i가 2보다 많고, 만약 전것과 같은게 있다면, i를 내려서 다시 하자.
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = 1 + rand.nextInt(10);
+
+			if (i > 1 && nums[i - 1] == nums[i]) {
+				i--;
+				continue;
+			}
+		}
+
+		for (int x : nums) {
+			System.out.println(x);
+		}
+
+		sc.close();
+
+	}
+
+	private static void q06_10() {
+		// 요소의 형이 int형인 배열을 마늘어서 모든 요소에 1~10의 난수를 대입하자.(1이상 10이하)
+		// 요소 수는 키보드를 통해 입력받을 것.
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print("몇개의 수를 만들까요? >> ");
+		int num = sc.nextInt();
+		int[] nums = new int[num];
+		Random rand = new Random();
+
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = 1 + rand.nextInt(10);
+		}
+
+		for (int x : nums) {
+			System.out.println(x);
+		}
+
 		sc.close();
 	}
 
