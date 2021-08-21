@@ -16,7 +16,98 @@ public class Ch07_Method {
 //		System.out.println(random(10, 30));
 
 //		System.out.println(readplusint(inputInt()));
-		cacul();
+		q0714();
+
+	}
+	
+
+	private static void q0714() {
+		// 정ㅅ x의 pos번째 있는 비트부터 n개 연속되는 비트를 1로 변경하는 값은 반환하는 setN메서드, 0으로 변환하는 resetN메서드,
+		// 반전시킨 값을 반환하는 inserseN을 작성하자.
+		int x = 12332;
+		int pos = 5;
+		int n = 14;
+		printbit(x);
+		printbit(setN(x, pos, n));
+		printbit(resetN(x, pos, n));
+	}
+
+	private static int setN(int x, int pos, int n) {
+		return x | ~(~0 << n) << pos;
+	}
+	
+	private static int resetN(int x , int pos, int n) {
+		return x & ~(~(~0 << n) << pos);
+	}
+
+	private static void q0713() {
+		// 정수 x의 pos번째 있는 비트(최하위 비트부터 0,1,2)를 1로 변경한 값을 반환하는 set메서드, 0으로 변경하는 reset메서드.
+		// 그리고 해당위치의 비트를 반전시켜서 반환하는 inverse를 작성하자.
+		int x = 11111;
+		int pos = 3;
+		printbit(x);
+		printbit(q0713_set(x, pos));
+		printbit(q0713_reset(x, pos));
+		printbit(q0713_inverse(x, pos));
+	}
+
+	private static int q0713_inverse(int x, int pos) {
+		return x ^ (1 << pos);
+	}
+
+	private static int q0713_reset(int x, int pos) {
+		return x & ~(1 << pos);
+	}
+
+	private static int q0713_set(int x, int pos) {
+		return x | (1 << pos);
+	}
+
+	private static void printbit(int n) {
+		// 정수 비트 출력. 옆으로 i값만큼 이동한것이 1이면 1, 아니면 0 프린트.
+		for (int i = 31; i >= 0; i--) {
+			System.out.print(((n >>> i & 1) == 1) ? 1 : 0);
+		}
+		System.out.println();
+
+	}
+
+	private static void rRotate() {
+		// q07_12
+		// 정수 x를 오른쪽으로 n 비트 회전한 값을 반환하는 rRotate메서드를 작성하라.
+		int x = 1565857138;
+		printbit(x);
+		int n = 6;
+		n = n % 32;
+		printbit(((x >>> n | x << (32 - n))));
+
+	}
+
+	private static void q0711() {
+		// 정수를 좌우로 시프트한 값이 "정수 X 2의 거듭제곱"과 같은지 확인하는 프로그램을 작성하자.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("x : ");
+		int x = sc.nextInt();
+		System.out.print("n : ");
+		int n = sc.nextInt();
+
+		int mpow = x * pow2(n);
+		int spow = x / pow2(n);
+
+		int lshift = x << n;
+		int rshift = x >> n;
+
+		if (mpow == lshift) {
+			System.out.println("거듭제곱과 왼쪽 쉬프트의 값이 같습니다.");
+		}
+	}
+
+	private static int pow2(int n) {
+		int pw = 1;
+		while (n-- > 0) {
+			pw *= 2;
+		}
+		return pw;
 	}
 
 	private static void cacul() {
@@ -61,7 +152,7 @@ public class Ch07_Method {
 
 			int inputanswer = 0;
 			do {
-				System.out.print("문제!! " + strx+" ");
+				System.out.print("문제!! " + strx + " ");
 				inputanswer = sc.nextInt();
 				if (inputanswer == answer) {
 					System.out.println("정답!");
