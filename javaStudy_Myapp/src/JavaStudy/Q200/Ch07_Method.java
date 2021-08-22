@@ -1,5 +1,6 @@
 package JavaStudy.Q200;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,10 +17,140 @@ public class Ch07_Method {
 //		System.out.println(random(10, 30));
 
 //		System.out.println(readplusint(inputInt()));
-		q0714();
+		q0720();
 
 	}
-	
+
+	private static void q0720() {
+		// // 배열 a의 요소 a[idx] 에 x를 삽입하는 aryins메서드를 작성하자.
+		// void aryIns{int[] a , int idx, int x )
+		// 삽입시에는 a[dix]~a[a.length-2) 를 하나씩 뒤로 이동히셔컁하낟.
+		// 예) 배열 a의 요소가{1,3,4,7,9,11}일때 aryIns[a,2,99)라고 호출하면 {1,3,99,4,7,9}가 된다.\
+		int[] a = { 1, 3, 4, 7, 9, 11 };
+		int idx = 3;
+		int x = 99;
+		aryIns(a, idx, x);
+	}
+
+	private static void aryIns(int[] a , int idx, int x ){
+		for(int i = a.length-1; i>idx; i--) {
+			a[i] = a[i-1];
+		}
+		a[idx]=x;
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void q0719() {
+		// 배열 a에서 요소 a[idx]로부터 n개의 요소를 삭제하는 aryRmvN을 작성하자.
+		// void aryrmvN(int[] a, int idx, int n)
+		// 삭제는 a[idx]보다 뒤에있는 모든 요소를 하나씩 앞으로 이동해서 할 것. 이동대사이 아닌 ㅛㅇ소는 기존 값을 그대로 유지할 것.
+		int[] a = { 1, 3, 4, 7, 9, 11 };
+		int idx = 1;
+		int n = 3;
+		aryrmvN(a, idx, n);
+	}
+
+	private static void aryrmvN(int[] a, int idx, int n) {
+		int idx2 = idx + n - 1;
+		if (idx2 > a.length - n - 1) {
+			idx2 = a.length - n - 1;
+		}
+		for (int i = idx; i <= idx2; i++) {
+			a[i] = a[i + n];
+		}
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void q0718() {
+		// 배열 a로부터 요소 a[idx]를 삭제하는 aryrmv메서드를 작성하자.
+		// void aryrmv(int[] a, int idx)
+		// a[idx]의 삭제는 그 뒤에 있는 요소를 앞으로 하나씩 이동해서 할것, 이동한 후에 비게되는 마지막 요소 ㅁ[a.lenth-1)의;ㄱ밧은
+		// 이동하기 전 마지막 값을 유지할 것.
+		// 예 배열 a의 요소가 {1,3,4,7,9,11}일 때에 aryrmw{a,2)라고 호출 한 후에는 {1,3,7,9,11,11} 이 된다.
+		int[] a = { 1, 3, 4, 7, 9, 11 };
+		aryrmv(a, 2);
+
+	}
+
+	private static void aryrmv(int[] a, int idx) {
+		for (int i = idx; i < a.length - 1; i++) {
+//			if (i == a.length - 1) {
+			a[i] = a[i + 1];
+//			
+//			} else {
+//				int temp = a[i];
+//				a[i] = a[i + 1];
+//				a[i + 1] = temp;
+//			}
+		}
+		System.out.println(Arrays.toString(a));
+	}
+
+	private static void q0717() {
+		// 배열 a로부터 key와 같은 값을 가지는 요소를 탐색하는 linearSearch메서드와, LinearSearchR 메서들르 작성할 것.
+		// 단 키와 같은 값을 가지는 요소가 여러개일 경우, LinearSearch는 앞에서, LinearSerachR은 가장 뒤에 위치한 요소를
+		// 찾을 것.
+		// int linearSearch(int[] a , int key)
+
+		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 2, 10 };
+		int key = 2;
+
+		System.out.println(linearSearch(a, key));
+		System.out.println(linearSearchR(a, key));
+	}
+
+	private static int linearSearch(int[] a, int key) {
+		int n = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == key) {
+				n = i;
+				break;
+			}
+		}
+		return n;
+	}
+
+	private static int linearSearchR(int[] a, int key) {
+		int n = 0;
+		for (int i = a.length - 1; i > 0; i--) {
+			if (a[i] == key) {
+				n = i;
+				break;
+			}
+		}
+		return n;
+	}
+
+	private static void q0715() {
+
+		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+		System.out.println(sumof(a));
+		System.out.println(minof(a));
+	}
+
+	private static int minof(int[] a) {
+		// q0717
+		// 배열 a가 가진 요소 중 최소값을 구하는 minof를 작성하자.
+		int min = a[0];
+		for (int i : a) {
+			if (i < min) {
+				min = i;
+			}
+		}
+
+		return min;
+	}
+
+	private static int sumof(int[] a) {
+		// q0715;
+		// 배열 a가 가진 모든 요소의 합을 구하는 sumof 메서드를 작성하자.
+		int result = 0;
+		for (int i : a) {
+			result += i;
+		}
+
+		return result;
+	}
 
 	private static void q0714() {
 		// 정ㅅ x의 pos번째 있는 비트부터 n개 연속되는 비트를 1로 변경하는 값은 반환하는 setN메서드, 0으로 변환하는 resetN메서드,
@@ -35,8 +166,8 @@ public class Ch07_Method {
 	private static int setN(int x, int pos, int n) {
 		return x | ~(~0 << n) << pos;
 	}
-	
-	private static int resetN(int x , int pos, int n) {
+
+	private static int resetN(int x, int pos, int n) {
 		return x & ~(~(~0 << n) << pos);
 	}
 
