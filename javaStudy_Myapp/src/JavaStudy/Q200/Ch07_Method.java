@@ -7,18 +7,133 @@ import java.util.Scanner;
 public class Ch07_Method {
 
 	public static void main(String[] args) {
-//		System.out.println(med(444, 33, 2212));
-//		System.out.println(signOf(999));
-//		System.out.println(sumUp(10));
-//		Hello();
-//		printSeason(1565);
-//		putstart();
 
-//		System.out.println(random(10, 30));
+		q0725();
+	}
 
-//		System.out.println(readplusint(inputInt()));
-		q0720();
+	private static void q0725() {
+//		배열 a에서 요소 a[idx]부터 n개의 요소를 삭제한 배열을 반환하는arrayRmvofN메서드를 작성하자.
+//		int[] arrayRmvofN)int[]a, int idx, int n)
+//		삭제는 a[idx] 보다 뒤에있는요소를 n개 앞으로 이동해서 할 것.
+//		예) 배열 a의 요소가 {1,3,4,7,9,11}일 때에 arrayRmvOfN(a,1,3)을 호출할 경우, 반환할 배열의 요소는 {1,9,11}이다.
 
+		int[] a = { 1, 3, 4, 7, 9, 11 };
+		System.out.println(Arrays.toString(arrayRmvOfN(a, 1, 3)));
+	}
+
+	private static int[] arrayRmvOfN(int[] a, int idx, int n) {
+		int[] result = new int[a.length - n];
+		for (int i = 0; i < idx; i++) {
+			result[i] = a[i];
+		}
+		for (int i = idx; i < a.length - n; i++) {
+			result[i] = a[i + n];
+		}
+
+		return result;
+	}
+
+	private static void q0724() {
+//		배열 a에서 요소a[idx]를 삭제한 배열을 반환하는 arrayRmvOf를 작성하자.
+//		int[] arrayRmvif(intp[ a, in idx)
+//		삭제는 a[idx]보다 뒤에 있는 모든 요소를 하나씩 앞으로 이동시킬 것.
+//		예) 배열a의 요소가 {1,3,4,7,9,11}일 때에, arrayRMvof(a,2)를 호출한 경우,
+//		반환할 배열의 요소는 {1,3,7,9,11}이다.
+		int[] a = { 1, 3, 4, 7, 9, 11 };
+		System.out.println(Arrays.toString(arrayRMvof(a, 2)));
+
+	}
+
+	private static int[] arrayRMvof(int[] a, int idx) {
+
+		int[] result = new int[a.length - 1];
+		boolean check = true;
+
+		// 내 방법. idx까지 간것을 체크하고, 갈라져라.
+//		for(int i = 0; i<a.length; i++) {
+//			if(check) {
+//				if(i==idx) {
+//					check=false;
+//				} else {
+//					result[i]=a[i];
+//				}
+//				
+//			} else {
+//				result[i-1]=a[i];
+//			}
+//		}
+//		
+		// 교재 방법. idx를 기점으로 for문을 두개로 나눴다.
+		for (int i = 0; i < idx; i++) {
+			result[i] = a[i];
+		}
+		for (int i = idx; i < a.length - 1; i++) {
+			result[i] = a[i + 1];
+		}
+
+		return result;
+	}
+
+	private static void q0723() {
+//		배열 a의 요소 중에서 값이 x인 모든 요소의 인덱스를 앞에서부터 순서대로 저장해서 반환하는 arraySrchIdx를 작성하자.
+//		int[] arraySrcIdx)int[]a)
+//		예)배열 a의 요소가{1,5,4,8,5,5,7}이고, arrySchIdx(a,5)를 호출할 경우, 반환할 배열은{1,4,5}가 된다. 
+		int[] a = { 1, 5, 4, 8, 5, 5, 7 };
+		System.out.println(Arrays.toString(arrySchIdx(a, 5)));
+	}
+
+	private static int[] arrySchIdx(int[] a, int b) {
+		int count = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == b) {
+				count++;
+			}
+		}
+		int[] result = new int[count];
+		count -= 1;
+		for (int i = a.length - 1; i > count; i--) {
+			if (a[i] == b) {
+				result[count] = i;
+				count -= 1;
+			}
+		}
+		return result;
+	}
+
+	private static void q0722() {
+//		배열 a와 같은 배열(요소 수가 같고, 모든 요소의 값이 같은 배열)을 생성해서 반환하는 arrayClone메서드를 작성하자.
+		int[] a = { 1, 2, 3, 4, 5, 6, 7 };
+		System.out.println(Arrays.toString(arrayClone(a)));
+	}
+
+	private static int[] arrayClone(int[] a) {
+		int[] result = new int[a.length];
+		for (int i = 0; i < a.length; i++) {
+			result[i] = a[i];
+		}
+		return result;
+	}
+
+	public static void q0721() {
+//		배열a와 배열 b의 전체 요소값을 교환하는 aryExchng메서드를 작성하자.
+//		void aryExchng(int[] a, intp[] b)
+//		두 배열의 요소 수가 같지 않다면, 작은쪽의 배열 수에 맞추어 교환할 것.
+//		예) 배열 a의 요소가 {1,2,3,4,5,6,7}이고, 배열 b의 요소가 {5,4,3,2,1}일 때에, aryexchng@a,b)를 호출하면 배열a는{5,4,3,2,1,6,7}이 되고, 배열b는 {1,2,3,4,5} 가 되야 한다.
+		int[] a = { 1, 2, 3, 4, 5, 6, 7 };
+		int[] b = { 5, 4, 3, 2, 1 };
+		aryExchng(a, b);
+
+	}
+
+	private static void aryExchng(int[] a, int[] b) {
+		int n = a.length < b.length ? a.length : b.length;
+		for (int i = 0; i < n; i++) {
+			int temp = a[i];
+			a[i] = b[i];
+			b[i] = temp;
+		}
+		System.out.println(Arrays.toString(a));
+		System.out.println(Arrays.toString(b));
 	}
 
 	private static void q0720() {
@@ -32,11 +147,11 @@ public class Ch07_Method {
 		aryIns(a, idx, x);
 	}
 
-	private static void aryIns(int[] a , int idx, int x ){
-		for(int i = a.length-1; i>idx; i--) {
-			a[i] = a[i-1];
+	private static void aryIns(int[] a, int idx, int x) {
+		for (int i = a.length - 1; i > idx; i--) {
+			a[i] = a[i - 1];
 		}
-		a[idx]=x;
+		a[idx] = x;
 		System.out.println(Arrays.toString(a));
 	}
 
